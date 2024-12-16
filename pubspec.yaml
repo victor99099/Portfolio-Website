@@ -1,0 +1,28 @@
+name: portfolio
+description: "A new Flutter project."
+publish_to: 'none'
+version: 0.1.0
+
+environment:
+  sdk: ^3.5.4
+
+dependencies:
+  flutter:
+    sdk: flutter
+  get: ^4.6.6
+  google_fonts: ^6.2.1
+  url_launcher: ^6.3.1
+  video_player: ^2.9.2
+
+dev_dependencies:
+  flutter_test:
+    sdk: flutter
+  flutter_lints: ^4.0.0
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/Ecommerceproject.mp4
+    - assets/WeatherProjectVideo.mp4
+    - assets/background.jpg
