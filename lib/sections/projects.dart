@@ -1,9 +1,11 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:video_player/video_player.dart';
 
+import '../Fucntions/globalfunctions.dart';
 import '../utils/Theme.dart';
 
 class Projects extends StatefulWidget {
@@ -25,7 +27,7 @@ class _ProjectsState extends State<Projects> {
     }
 
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      padding: isAndroidWeb()? EdgeInsets.only(top: 20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -55,11 +57,12 @@ class _ProjectsState extends State<Projects> {
           // Electronics Ecommerce App
           ProjectCard(
             title: 'Electronics Ecommerce',
-            keyFeature: "User convenice and usability was prioritized with one tap user sign-in and fast response times & a smooth interface supported by Firebase's real-time capabilities.",
+            keyFeature:
+                "User convenice and usability was prioritized with one tap user sign-in and fast response times & a smooth interface supported by Firebase's real-time capabilities.",
             videoUrl: 'assets/Ecommerceproject.mp4',
             githubUrl: 'https://github.com/victor99099/e_commerce',
             downloadUrl:
-                'https://drive.google.com/file/d/1rUIyLihhRoyziC6leYigKQ5TekhOS0aN/view?usp=sharing',
+                'https://drive.google.com/file/d/1qVtHuGTJNDdIjTYKy4b0rk39zKY_sWw6/view?usp=sharing',
             launchURL: _launchURL,
           ),
 
@@ -68,12 +71,12 @@ class _ProjectsState extends State<Projects> {
           // Weather App
           ProjectCard(
             title: 'Weather',
-            keyFeature: "✔ Utilizes Singleton and Observer design patterns for efficient state management. \n✔ Ensures reusability, maintainability, and scalability with clean architecture. \n✔ Streamlined development and collaboration with Git for version control. \n✔ Performance Optimization using parallel fetching."
-,
+            keyFeature:
+                "✔ Utilizes Singleton and Observer design patterns for efficient state management. \n✔ Ensures reusability, maintainability, and scalability with clean architecture. \n✔ Streamlined development and collaboration with Git for version control. \n✔ Performance Optimization using parallel fetching.",
             videoUrl: 'assets/WeatherProjectVideo.mp4',
             githubUrl: 'https://github.com/victor99099/WeatherApp',
             downloadUrl:
-                'https://drive.google.com/file/d/1qVtHuGTJNDdIjTYKy4b0rk39zKY_sWw6/view?usp=sharing',
+                'https://drive.google.com/file/d/1rUIyLihhRoyziC6leYigKQ5TekhOS0aN/view?usp=sharing',
             launchURL: _launchURL,
           ),
         ],
@@ -82,7 +85,7 @@ class _ProjectsState extends State<Projects> {
   }
 }
 
-class ProjectCard extends StatelessWidget {
+class ProjectCard extends StatefulWidget {
   final String title;
   final String keyFeature;
   final String videoUrl;
@@ -100,7 +103,14 @@ class ProjectCard extends StatelessWidget {
   });
 
   @override
+  State<ProjectCard> createState() => _ProjectCardState();
+}
+
+class _ProjectCardState extends State<ProjectCard> {
+  @override
   Widget build(BuildContext context) {
+    RxBool isHovered = false.obs;
+    RxBool isHovered2 = false.obs;
     return Container(
       // height: MediaQuery.of(context).size.height,
       // width: MediaQuery.of(context).size.width,
@@ -116,7 +126,7 @@ class ProjectCard extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    title,
+                    widget.title,
                     style: TextStyle(
                       color: AppConstant.primaryColor,
                       fontSize: 18,
@@ -142,7 +152,7 @@ class ProjectCard extends StatelessWidget {
                   child: ClipRRect(
                     borderRadius:
                         BorderRadius.circular(10), // Optional: Rounded corners
-                    child: VideoApp(videoUrl: videoUrl),
+                    child: VideoApp(videoUrl: widget.videoUrl),
                   ),
                 ),
               ),
@@ -153,15 +163,14 @@ class ProjectCard extends StatelessWidget {
                   Text(
                     "Key Features",
                     style: TextStyle(
-                      color: AppConstant.primaryColor,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 18
-                    ),
+                        color: AppConstant.primaryColor,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 18),
                     textAlign: TextAlign.left,
                   ),
                   5.heightBox,
                   Text(
-                    keyFeature,
+                    widget.keyFeature,
                     style: TextStyle(
                       color: Colors.white,
                     ),
@@ -171,33 +180,117 @@ class ProjectCard extends StatelessWidget {
               ),
               SizedBox(height: 20),
               Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                // crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  GestureDetector(
-                    onTap: () => launchURL(downloadUrl),
-                    child: Card(
-                      color: AppConstant.cardColor,
-                      child: Row(
-                        children: [
-                          Image.asset("assets/GitLogo.png",fit: BoxFit.contain,),
-                          Text("Download APK")
-                        ],
-                      ),
-                    ),
-                  ),
-                  ElevatedButton.icon(
-                    style: ButtonStyle(),
-                    onPressed: () => launchURL(downloadUrl),
-                    icon: Icon(Icons.download),
-                    label: Text('Download'),
-                  ),
-                  SizedBox(width: 10),
+                  InkWell(
+                       onHover: (hovering) {
+                        
+                          isHovered.value = hovering;
+                        
+                      },
+                      onTap: () => widget.launchURL(widget.githubUrl),
+                      child: Container(
+                        width: isAndroidWeb()
+                            ? MediaQuery.of(context).size.width * 0.42
+                            : MediaQuery.of(context).size.width * 0.3,
+                        height: isAndroidWeb()
+                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.15,
+                        child: Obx( () =>
+                          Card(
+                            shadowColor:
+                                  isHovered.value ? AppConstant.primaryColor : null,
+                            elevation: 20,
+                            color: AppConstant.cardColor2,
+                            child: Padding(
+                              padding: EdgeInsets.all(8),
+                              child: Row(
+                                mainAxisAlignment: isAndroidWeb()
+                                    ? MainAxisAlignment.spaceEvenly
+                                    : MainAxisAlignment.start,
+                                // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                                children: [
+                                  Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.075,
+                                      height: MediaQuery.of(context).size.height *
+                                          0.08,
+                                      child: Image.asset(
+                                        "assets/GitLogo.png",
+                                        fit: BoxFit.contain,
+                                      )),
+                                  // 5.widthBox,
+                                  Text(
+                                    "View Code",
+                                    style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: isAndroidWeb() ? 10 : 20),
+                                  ).pOnly(left: 5)
+                                ],
+                              ),
+                            ),
+                          ),
+                        ),
+                      )),
+                  InkWell(
+                    
+                      onHover: (hovering) {
+                        
+                          isHovered2.value = hovering;
+                        
+                      },
+                      onTap: () => widget.launchURL(widget.downloadUrl),
+                      child: Container(
+                        width: isAndroidWeb()
+                            ? MediaQuery.of(context).size.width * 0.42
+                            : MediaQuery.of(context).size.width * 0.3,
+                        height:  isAndroidWeb()
+                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.15,
+                        child: Obx( () =>
+                          Card(
+                            shadowColor:
+                                isHovered2.value ? AppConstant.primaryColor : null,
+                            elevation: 20,
+                            color: AppConstant.cardColor2,
+                            child: Row(
+                              mainAxisAlignment: isAndroidWeb()
+                                  ? MainAxisAlignment.spaceEvenly
+                                  : MainAxisAlignment.start,
+                              // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                              children: [
+                                Container(
+                                    width: MediaQuery.of(context).size.width *
+                                        0.075,
+                                    height: MediaQuery.of(context).size.height *
+                                        0.08,
+                                    child: Image.asset(
+                                      "assets/DownloadLogo.png",
+                                      fit: BoxFit.contain,
+                                    )),
+                                // 5.widthBox,
+                                Text(
+                                  "Download APK",
+                                  style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: isAndroidWeb() ? 10 : 20),
+                                ).pOnly(left: 5)
+                              ],
+                            ),
+                          ),
+                        ),
+                      )),
                   // ElevatedButton.icon(
-                  //   onPressed: () => launchURL(githubUrl),
-                  //   icon: Icon(IconIco),
-                  //   label: Text('GitHub'),
+                  //   style: ButtonStyle(),
+                  //   onPressed: () => launchURL(downloadUrl),
+                  //   icon: Icon(Icons.download),
+                  //   label: Text('Download'),
                   // ),
+                  // SizedBox(width: 10),
+                  // // ElevatedButton.icon(
+                  // //   onPressed: () => launchURL(githubUrl),
+                  // //   icon: Icon(IconIco),
+                  // //   label: Text('GitHub'),
+                  // // ),
                 ],
               ),
             ],
@@ -206,6 +299,7 @@ class ProjectCard extends StatelessWidget {
       ),
     );
   }
+  
 }
 
 class VideoApp extends StatefulWidget {
@@ -235,8 +329,9 @@ class _VideoAppState extends State<VideoApp> {
     final screenHeight = MediaQuery.of(context).size.height;
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      title: 'Video Demo',
+      // title: 'Video Demo',
       home: Scaffold(
+        // backgroundColor: AppConstant.cardColor2,
         body: Center(
             child: _controller.value.isInitialized
                 ? SizedBox(
@@ -255,6 +350,7 @@ class _VideoAppState extends State<VideoApp> {
                     child: CircularProgressIndicator(),
                   )),
         floatingActionButton: FloatingActionButton(
+          backgroundColor: AppConstant.cardColor,
           onPressed: () {
             setState(() {
               _controller.value.isPlaying
@@ -264,6 +360,7 @@ class _VideoAppState extends State<VideoApp> {
           },
           child: Icon(
             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow,
+            color: AppConstant.primaryColor,
           ),
         ),
       ),

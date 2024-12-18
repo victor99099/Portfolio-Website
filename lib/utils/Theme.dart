@@ -7,6 +7,7 @@ class AppConstant{
   static Color textColor = const Color(0xFF1F242D);
   static Color backgroundColor= const Color(0xFF1F242D);
   static Color cardColor= const Color.fromARGB(255, 21, 24, 32);
+  static Color cardColor2=Color.fromARGB(255, 0, 0, 0);
   
 
 }

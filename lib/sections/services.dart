@@ -7,13 +7,9 @@ import 'package:velocity_x/velocity_x.dart';
 import 'package:flutter/foundation.dart'; // For kIsWeb
 import 'dart:html' as html;
 
-import 'package:visibility_detector/visibility_detector.dart'; // For userAgent detection
+import 'package:visibility_detector/visibility_detector.dart';
 
-bool isAndroidWeb() {
-  final userAgent = html.window.navigator.userAgent.toLowerCase();
-  // return userAgent.contains("android");
-  return true;
-}
+import '../Fucntions/globalfunctions.dart'; // For userAgent detection
 
 class Services extends StatelessWidget {
   const Services({
@@ -23,7 +19,7 @@ class Services extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      padding: isAndroidWeb()? EdgeInsets.only(top : 20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -171,7 +167,7 @@ class _ServiceCardState extends State<ServiceCard>
         }
       },
       child: AnimatedContainer(
-        duration: const Duration(milliseconds: 500),
+        duration: const Duration(milliseconds: 200),
         curve: Curves.easeInOut,
         transform: _isVisible
             ? Matrix4.identity()
@@ -234,13 +230,14 @@ class _ServiceCardState extends State<ServiceCard>
                               crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 widget.heading.text
-                                    .color(Colors.white)
+                                    .color(AppConstant.primaryColor)
                                     .xl2
                                     .align(TextAlign.left)
                                     .make(),
                                 5.heightBox,
                                 Text(
                                   widget.text,
+                                  textAlign: TextAlign.center,
                                   softWrap: true,
                                   style: const TextStyle(
                                     color: Colors.white,

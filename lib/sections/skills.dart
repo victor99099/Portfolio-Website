@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:portfolio/Fucntions/globalfunctions.dart';
 import 'package:portfolio/utils/Theme.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:visibility_detector/visibility_detector.dart';
@@ -12,7 +13,7 @@ class ServicesSkills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      padding: isAndroidWeb()? EdgeInsets.only(top :20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -135,10 +136,10 @@ class _AnimatedSkillCardState extends State<AnimatedSkillCard>
     return VisibilityDetector(
       key: Key("${widget.heading}-${widget.image}"),
       onVisibilityChanged: (visibilityInfo) {
-        print("${widget.heading}: ${visibilityInfo.visibleFraction}");
+       
         if (visibilityInfo.visibleFraction > 0.3 && !_isVisible) {
           _isVisible = true;
-          print("Animating ${widget.heading}"); 
+           
           _controller.forward();
         }
         _isVisible = false;
@@ -203,7 +204,7 @@ class _SkillCardState extends State<SkillCard>
           return Transform.scale(
             scale: _scaleAnimation.value,
             child: Container(
-              padding: EdgeInsets.all(10),
+              padding: isAndroidWeb()? EdgeInsets.all(0) : EdgeInsets.all(10),
                 width: double.infinity,
                 child: Card(
                   color: AppConstant.cardColor,
@@ -220,7 +221,7 @@ class _SkillCardState extends State<SkillCard>
                               borderRadius: BorderRadius.circular(10)),
                           child: Image.asset(
                             widget.image, // Replace with your image URL
-                            width: 100, // Circle size
+                            width:MediaQuery.of(context).size.width * 0.15, // Circle size
                             height: 70,
                             fit: BoxFit
                                 .contain, // Ensures the image fits within the circle
@@ -233,7 +234,7 @@ class _SkillCardState extends State<SkillCard>
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
                                 widget.heading.text
-                                    .color(Colors.white)
+                                    .color(AppConstant.primaryColor)
                                     .xl2
                                     .align(TextAlign.left)
                                     .make(),
