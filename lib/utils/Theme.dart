@@ -2,6 +2,15 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
+class AppConstant{
+  static Color primaryColor = const Color(0xFF00EEFF);
+  static Color textColor = const Color(0xFF1F242D);
+  static Color backgroundColor= const Color(0xFF1F242D);
+  static Color cardColor= const Color.fromARGB(255, 21, 24, 32);
+  
+
+}
+
 class MyTheme {
   static ThemeData lightTheme(BuildContext context) => ThemeData(
         fontFamily: GoogleFonts.poppins().fontFamily,

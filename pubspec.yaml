@@ -11,8 +11,11 @@ dependencies:
     sdk: flutter
   get: ^4.6.6
   google_fonts: ^6.2.1
+  icon_icons: ^1.0.4
   url_launcher: ^6.3.1
+  velocity_x: ^4.2.1
   video_player: ^2.9.2
+  visibility_detector: ^0.4.0+2
 
 dev_dependencies:
   flutter_test:
@@ -26,3 +29,17 @@ flutter:
     - assets/Ecommerceproject.mp4
     - assets/WeatherProjectVideo.mp4
     - assets/background.jpg
+    - assets/background.png
+    - assets/back1.png
+    - assets/back2.png
+    - assets/flutterLogo.png
+    - assets/nodeLogo.jpg
+    - assets/cloudLogo.png
+    - assets/toolLogo.png
+    - assets/plLogo.jpg
+    - assets/cloud2Logo.png
+    - assets/frontendLogo.png
+    - assets/backendLogo.png
+    - assets/crossLogo.png
+    - assets/GitLogo.png
+    - assets/DownloadLogo.png
