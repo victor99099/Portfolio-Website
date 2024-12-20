@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/Fucntions/globalfunctions.dart';
 import 'package:portfolio/utils/Theme.dart';
@@ -13,14 +12,14 @@ class ServicesSkills extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: isAndroidWeb()? EdgeInsets.only(top :20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      padding: isAndroidWeb()? const EdgeInsets.only(top :20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'My ',
                 style: TextStyle(
                   color: Colors.white,
@@ -38,9 +37,9 @@ class ServicesSkills extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           ..._buildAnimatedSkills(),
-          AnimatedSkillCard(image: "assets/cloudLogo.png", text: "Have proficiency in deploying applications & backend on AWS and Firebase. Furthermore utilizing cloud database (FirebaseDatabase & AWS DynamoDB) and Managing Cloud Storage (FirebaseStorage & AWS Storage) for applications", heading: "Cloud Architecture")
+          const AnimatedSkillCard(image: "assets/cloudLogo.png", text: "Have proficiency in deploying applications & backend on AWS and Firebase. Furthermore utilizing cloud database (FirebaseDatabase & AWS DynamoDB) and Managing Cloud Storage (FirebaseStorage & AWS Storage) for applications", heading: "Cloud Architecture")
 
         ],
       ),
@@ -180,7 +179,7 @@ class _SkillCardState extends State<SkillCard>
     super.initState();
     _controller = AnimationController(
       vsync: this,
-      duration: Duration(milliseconds: 200),
+      duration: const Duration(milliseconds: 200),
     );
     _scaleAnimation = Tween<double>(begin: 1.0, end: 1.05).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
@@ -204,7 +203,7 @@ class _SkillCardState extends State<SkillCard>
           return Transform.scale(
             scale: _scaleAnimation.value,
             child: Container(
-              padding: isAndroidWeb()? EdgeInsets.all(0) : EdgeInsets.all(10),
+              padding: isAndroidWeb()? const EdgeInsets.all(0) : const EdgeInsets.all(10),
                 width: double.infinity,
                 child: Card(
                   color: AppConstant.cardColor,
@@ -213,7 +212,7 @@ class _SkillCardState extends State<SkillCard>
                       side: BorderSide(color: AppConstant.primaryColor),
                       borderRadius: BorderRadius.circular(10)),
                   child: Padding(
-                    padding: EdgeInsets.all(10),
+                    padding: const EdgeInsets.all(10),
                     child: Row(
                       children: [
                         Card(
@@ -241,7 +240,7 @@ class _SkillCardState extends State<SkillCard>
                                 Text(
                                   widget.text,
                                   softWrap: true,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                       color: Colors.white, fontSize: 12),
                                 ),
                               ],

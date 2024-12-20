@@ -1,11 +1,8 @@
-import 'dart:io';
 
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/utils/Theme.dart';
 import 'package:velocity_x/velocity_x.dart';
-import 'package:flutter/foundation.dart'; // For kIsWeb
-import 'dart:html' as html;
+// For kIsWeb
 
 import 'package:visibility_detector/visibility_detector.dart';
 
@@ -19,14 +16,14 @@ class Services extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: isAndroidWeb()? EdgeInsets.only(top : 20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      padding: isAndroidWeb()? const EdgeInsets.only(top : 20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'My ',
                 style: TextStyle(
                   color: Colors.white,
@@ -44,28 +41,28 @@ class Services extends StatelessWidget {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           isAndroidWeb()
               ? Column(
                   children: [
-                    ServiceCard(
+                    const ServiceCard(
                         image: "assets/frontendLogo.png",
                         text:
                             "Modular Frontend Development for Android, IOS, Linux, Windows, MacOS, Web App or all together",
                         heading: "Front-End Development"),
                     10.heightBox,
-                    ServiceCard(
+                    const ServiceCard(
                         image: "assets/backendLogo.png",
                         text: "Scalable Backend Development using Restful APIs",
                         heading: "Back-End Development"),
                     10.heightBox,
-                    ServiceCard(
+                    const ServiceCard(
                         image: "assets/crossLogo.png",
                         text:
                             "App development with Frontend & Backend integrated for Android, IOS, Linux, Windows, MacOS, Web App or all together",
                         heading: "App Development"),
                     10.heightBox,
-                    ServiceCard(
+                    const ServiceCard(
                         image: "assets/cloud2Logo.png",
                         text:
                             "Cloud based Backend hosting, databses, storage, and authentication for applications",
@@ -75,7 +72,7 @@ class Services extends StatelessWidget {
                 )
               : Column(
                   children: [
-                    Row(
+                    const Row(
                       mainAxisAlignment: MainAxisAlignment.spaceBetween,
                       children: [
                         ServiceCard(
@@ -92,7 +89,7 @@ class Services extends StatelessWidget {
                       ],
                     ),
                     10.heightBox,
-                    Row(
+                    const Row(
                       children: [
                         ServiceCard(
                             image: "assets/crossLogo.png",

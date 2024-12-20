@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -18,7 +17,7 @@ class Projects extends StatefulWidget {
 class _ProjectsState extends State<Projects> {
   @override
   Widget build(BuildContext context) {
-    void _launchURL(String url) async {
+    void launchURL(String url) async {
       if (await canLaunch(url)) {
         await launch(url);
       } else {
@@ -27,14 +26,14 @@ class _ProjectsState extends State<Projects> {
     }
 
     return Padding(
-      padding: isAndroidWeb()? EdgeInsets.only(top: 20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      padding: isAndroidWeb()? const EdgeInsets.only(top: 20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Text(
+              const Text(
                 'My ',
                 style: TextStyle(
                   color: Colors.white,
@@ -52,7 +51,7 @@ class _ProjectsState extends State<Projects> {
               ),
             ],
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // Electronics Ecommerce App
           ProjectCard(
@@ -63,10 +62,10 @@ class _ProjectsState extends State<Projects> {
             githubUrl: 'https://github.com/victor99099/e_commerce',
             downloadUrl:
                 'https://drive.google.com/file/d/1qVtHuGTJNDdIjTYKy4b0rk39zKY_sWw6/view?usp=sharing',
-            launchURL: _launchURL,
+            launchURL: launchURL,
           ),
 
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
 
           // Weather App
           ProjectCard(
@@ -77,7 +76,7 @@ class _ProjectsState extends State<Projects> {
             githubUrl: 'https://github.com/victor99099/WeatherApp',
             downloadUrl:
                 'https://drive.google.com/file/d/1rUIyLihhRoyziC6leYigKQ5TekhOS0aN/view?usp=sharing',
-            launchURL: _launchURL,
+            launchURL: launchURL,
           ),
         ],
       ),
@@ -93,7 +92,7 @@ class ProjectCard extends StatefulWidget {
   final String downloadUrl;
   final Function(String) launchURL;
 
-  const ProjectCard({
+  const ProjectCard({super.key, 
     required this.title,
     required this.keyFeature,
     required this.videoUrl,
@@ -120,7 +119,8 @@ class _ProjectCardState extends State<ProjectCard> {
         child: Padding(
           padding: const EdgeInsets.all(20.0),
           child: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            // mainAxisAlignment: MainAxisAlignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
@@ -133,7 +133,7 @@ class _ProjectCardState extends State<ProjectCard> {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  Text(
+                  const Text(
                     " App",
                     style: TextStyle(
                       color: Colors.white,
@@ -143,8 +143,8 @@ class _ProjectCardState extends State<ProjectCard> {
                   ),
                 ],
               ),
-              SizedBox(height: 10),
-              Container(
+              const SizedBox(height: 10),
+              SizedBox(
                 height: isAndroidWeb()
                             ? MediaQuery.of(context).size.height * 0.7 : MediaQuery.of(context).size.height * 0.9,
                 width: MediaQuery.of(context).size.width * 0.9,
@@ -157,29 +157,33 @@ class _ProjectCardState extends State<ProjectCard> {
                   ),
                 ),
               ),
-              SizedBox(height: 20),
-              Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    "Key Features",
-                    style: TextStyle(
-                        color: AppConstant.primaryColor,
-                        fontWeight: FontWeight.bold,
-                        fontSize: 18),
-                    textAlign: TextAlign.left,
-                  ),
-                  5.heightBox,
-                  Text(
-                    widget.keyFeature,
-                    style: TextStyle(
-                      color: Colors.white,
+              const SizedBox(height: 20),
+              Align(
+                alignment: Alignment.topLeft,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Text(
+                      "Key Features",
+                      style: TextStyle(
+                          color: AppConstant.primaryColor,
+                          fontWeight: FontWeight.bold,
+                          fontSize: 18),
+                      textAlign: TextAlign.left,
                     ),
-                    textAlign: TextAlign.justify,
-                  )
-                ],
+                    5.heightBox,
+                    Text(
+                      widget.keyFeature,
+                      style: const TextStyle(
+                        color: Colors.white,
+                      ),
+                      textAlign: TextAlign.justify,
+                    )
+                  ],
+                ).pOnly(left: 20),
               ),
-              SizedBox(height: 20),
+              const SizedBox(height: 20),
               Row(
                 // crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -191,7 +195,7 @@ class _ProjectCardState extends State<ProjectCard> {
                         
                       },
                       onTap: () => widget.launchURL(widget.githubUrl),
-                      child: Container(
+                      child: SizedBox(
                         width: isAndroidWeb()
                             ? MediaQuery.of(context).size.width * 0.42
                             : MediaQuery.of(context).size.width * 0.25,
@@ -204,14 +208,14 @@ class _ProjectCardState extends State<ProjectCard> {
                             elevation: 20,
                             color: AppConstant.cardColor2,
                             child: Padding(
-                              padding: EdgeInsets.all(8),
+                              padding: const EdgeInsets.all(8),
                               child: Row(
                                 mainAxisAlignment: isAndroidWeb()
                                     ? MainAxisAlignment.spaceEvenly
                                     : MainAxisAlignment.start,
                                 // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                                 children: [
-                                  Container(
+                                  SizedBox(
                                       width: MediaQuery.of(context).size.width *
                                           0.075,
                                       height: MediaQuery.of(context).size.height *
@@ -241,7 +245,7 @@ class _ProjectCardState extends State<ProjectCard> {
                         
                       },
                       onTap: () => widget.launchURL(widget.downloadUrl),
-                      child: Container(
+                      child: SizedBox(
                         width: isAndroidWeb()
                             ? MediaQuery.of(context).size.width * 0.42
                             : MediaQuery.of(context).size.width * 0.25,
@@ -259,7 +263,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                   : MainAxisAlignment.start,
                               // mainAxisAlignment: MainAxisAlignment.spaceBetween,
                               children: [
-                                Container(
+                                SizedBox(
                                     width: MediaQuery.of(context).size.width *
                                         0.075,
                                     height: MediaQuery.of(context).size.height *
@@ -305,7 +309,7 @@ class _ProjectCardState extends State<ProjectCard> {
 
 class VideoApp extends StatefulWidget {
   final String videoUrl;
-  const VideoApp({required this.videoUrl});
+  const VideoApp({super.key, required this.videoUrl});
 
   @override
   _VideoAppState createState() => _VideoAppState();
@@ -347,7 +351,7 @@ class _VideoAppState extends State<VideoApp> {
                       ),
                     ),
                   )
-                : Center(
+                : const Center(
                     child: CircularProgressIndicator(),
                   )),
         floatingActionButton: FloatingActionButton(
@@ -378,7 +382,7 @@ class _VideoAppState extends State<VideoApp> {
 class VideoPlayerWidget extends StatefulWidget {
   final String videoUrl;
 
-  const VideoPlayerWidget({required this.videoUrl});
+  const VideoPlayerWidget({super.key, required this.videoUrl});
 
   @override
   _VideoPlayerWidgetState createState() => _VideoPlayerWidgetState();
@@ -396,7 +400,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
   }
 
   void _initializeVideoPlayer() {
-    if (widget.videoUrl == null || widget.videoUrl.isEmpty) {
+    if (widget.videoUrl.isEmpty) {
       setState(() {
         _errorMessage = 'Invalid video URL';
       });
@@ -448,7 +452,7 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
       return Center(
         child: Text(
           'Error: $_errorMessage',
-          style: TextStyle(color: Colors.red),
+          style: const TextStyle(color: Colors.red),
         ),
       );
     }
@@ -469,12 +473,12 @@ class _VideoPlayerWidgetState extends State<VideoPlayerWidget> {
                   child: VideoPlayer(_controller),
                 ),
                 if (_isBuffering)
-                  Center(
+                  const Center(
                     child: CircularProgressIndicator(),
                   ),
               ],
             ),
           )
-        : Center(child: CircularProgressIndicator());
+        : const Center(child: CircularProgressIndicator());
   }
 }

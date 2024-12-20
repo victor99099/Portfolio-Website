@@ -1,6 +1,6 @@
-import 'package:firebase_core/firebase_core.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
+import 'package:portfolio/sections/contactme.dart';
 import 'package:portfolio/sections/projects.dart';
 import 'package:portfolio/sections/services.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -15,10 +15,12 @@ import 'utils/Theme.dart';
 void main() async {
   // WidgetsFlutterBinding.ensureInitialized();
   // await Firebase.initializeApp(); // Initialize Firebase
-  runApp(MyPortfolio());
+  runApp(const MyPortfolio());
 }
 
 class MyPortfolio extends StatelessWidget {
+  const MyPortfolio({super.key});
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -27,12 +29,14 @@ class MyPortfolio extends StatelessWidget {
       themeMode: ThemeMode.system,
       theme: MyTheme.lightTheme(context),
       darkTheme: MyTheme.darkTheme(context),
-      home: PortfolioPage(),
+      home: const PortfolioPage(),
     );
   }
 }
 
 class PortfolioPage extends StatelessWidget {
+  const PortfolioPage({super.key});
+
   void _launchURL(String url) async {
     if (await canLaunch(url)) {
       await launch(url);
@@ -61,16 +65,16 @@ class PortfolioPage extends StatelessWidget {
             
 
             // Services & Skills Section
-            ServicesSkills(),
+            const ServicesSkills(),
 
-            Services(),
+            const Services(),
 
             // Projects Section
-            Projects(),
+            const Projects(),
 
 
             // Footer Section
-            
+            const ContactMe().marginOnly(top: 150)
           ],
         ),
       ),

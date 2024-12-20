@@ -1,13 +1,13 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
 class AppConstant{
   static Color primaryColor = const Color(0xFF00EEFF);
+  static Color primaryColor2 = const Color(0xFF00EEFF);
   static Color textColor = const Color(0xFF1F242D);
   static Color backgroundColor= const Color(0xFF1F242D);
   static Color cardColor= const Color.fromARGB(255, 21, 24, 32);
-  static Color cardColor2=Color.fromARGB(255, 0, 0, 0);
+  static Color cardColor2=const Color.fromARGB(255, 0, 0, 0);
   
 
 }
@@ -20,6 +20,11 @@ class MyTheme {
         primaryColor: const Color.fromARGB(255, 134, 133, 133),
         canvasColor: Colors.white,
         cardColor: Colors.white,
+        scrollbarTheme: ScrollbarThemeData(
+          thumbColor: WidgetStatePropertyAll(AppConstant.primaryColor),
+          trackColor: WidgetStatePropertyAll(Colors.blue[300]),
+          trackBorderColor: const WidgetStatePropertyAll(Colors.grey),
+        ),
         // highlightColor: const Color.fromARGB(255, 98, 46, 128),
         // shadowColor: const Color.fromARGB(255, 98, 46, 128),
         // indicatorColor: const Color.fromARGB(255, 250, 242, 255),
