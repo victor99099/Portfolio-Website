@@ -3,7 +3,7 @@ import 'package:get/get.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:velocity_x/velocity_x.dart';
 import 'package:video_player/video_player.dart';
-
+import 'package:ionicons/ionicons.dart';
 import '../Fucntions/globalfunctions.dart';
 import '../utils/Theme.dart';
 
@@ -26,7 +26,9 @@ class _ProjectsState extends State<Projects> {
     }
 
     return Padding(
-      padding: isAndroidWeb()? const EdgeInsets.only(top: 20) : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
+      padding: isAndroidWeb()
+          ? const EdgeInsets.only(top: 20)
+          : const EdgeInsets.symmetric(horizontal: 20.0, vertical: 20),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -58,7 +60,8 @@ class _ProjectsState extends State<Projects> {
             title: 'Electronics Ecommerce',
             keyFeature:
                 "User convenience and usability was prioritized with one tap user sign-in and fast response times & a smooth interface supported by Firebase's real-time capabilities.",
-            videoUrl: 'https://portfolio-e3fe4.web.app/assets/assets/Ecommerceproject2.mp4',
+            videoUrl:
+                'https://portfolio-e3fe4.web.app/assets/assets/Ecommerceproject2.mp4',
             githubUrl: 'https://github.com/victor99099/e_commerce',
             downloadUrl:
                 'https://drive.google.com/file/d/1qVtHuGTJNDdIjTYKy4b0rk39zKY_sWw6/view?usp=sharing',
@@ -72,7 +75,8 @@ class _ProjectsState extends State<Projects> {
             title: 'Weather',
             keyFeature:
                 "✔ Utilizes Singleton and Observer design patterns for efficient state management. \n✔ Ensures reusability, maintainability, and scalability with clean architecture. \n✔ Streamlined development and collaboration with Git for version control. \n✔ Performance Optimization using parallel fetching.",
-            videoUrl: 'https://portfolio-e3fe4.web.app/assets/assets/WeatherProjectVideo2.mp4',
+            videoUrl:
+                'https://portfolio-e3fe4.web.app/assets/assets/WeatherProjectVideo2.mp4',
             githubUrl: 'https://github.com/victor99099/WeatherApp',
             downloadUrl:
                 'https://drive.google.com/file/d/1rUIyLihhRoyziC6leYigKQ5TekhOS0aN/view?usp=sharing',
@@ -92,7 +96,8 @@ class ProjectCard extends StatefulWidget {
   final String downloadUrl;
   final Function(String) launchURL;
 
-  const ProjectCard({super.key, 
+  const ProjectCard({
+    super.key,
     required this.title,
     required this.keyFeature,
     required this.videoUrl,
@@ -146,7 +151,8 @@ class _ProjectCardState extends State<ProjectCard> {
               const SizedBox(height: 10),
               SizedBox(
                 height: isAndroidWeb()
-                            ? MediaQuery.of(context).size.height * 0.7 : MediaQuery.of(context).size.height * 0.9,
+                    ? MediaQuery.of(context).size.height * 0.7
+                    : MediaQuery.of(context).size.height * 0.9,
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: AspectRatio(
                   aspectRatio: 1, // Set aspect ratio to 1:1
@@ -189,10 +195,8 @@ class _ProjectCardState extends State<ProjectCard> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
                   InkWell(
-                       onHover: (hovering) {
-                        
-                          isHovered.value = hovering;
-                        
+                      onHover: (hovering) {
+                        isHovered.value = hovering;
                       },
                       onTap: () => widget.launchURL(widget.githubUrl),
                       child: SizedBox(
@@ -200,11 +204,13 @@ class _ProjectCardState extends State<ProjectCard> {
                             ? MediaQuery.of(context).size.width * 0.42
                             : MediaQuery.of(context).size.width * 0.25,
                         height: isAndroidWeb()
-                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.13,
-                        child: Obx( () =>
-                          Card(
-                            shadowColor:
-                                  isHovered.value ? AppConstant.primaryColor : null,
+                            ? MediaQuery.of(context).size.height * 0.1
+                            : MediaQuery.of(context).size.height * 0.13,
+                        child: Obx(
+                          () => Card(
+                            shadowColor: isHovered.value
+                                ? AppConstant.primaryColor
+                                : null,
                             elevation: 20,
                             color: AppConstant.cardColor2,
                             child: Padding(
@@ -218,11 +224,21 @@ class _ProjectCardState extends State<ProjectCard> {
                                   SizedBox(
                                       width: MediaQuery.of(context).size.width *
                                           0.075,
-                                      height: MediaQuery.of(context).size.height *
-                                          0.08,
-                                      child: Image.asset(
-                                        "assets/GitLogo.png",
-                                        fit: BoxFit.contain,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.08,
+                                      child: Icon(
+                                        Ionicons.logo_github,
+                                        size: isAndroidWeb()
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.06
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.08,
+                                        color: AppConstant.primaryColor,
                                       )),
                                   // 5.widthBox,
                                   Text(
@@ -238,23 +254,22 @@ class _ProjectCardState extends State<ProjectCard> {
                         ),
                       )),
                   InkWell(
-                    
                       onHover: (hovering) {
-                        
-                          isHovered2.value = hovering;
-                        
+                        isHovered2.value = hovering;
                       },
                       onTap: () => widget.launchURL(widget.downloadUrl),
                       child: SizedBox(
                         width: isAndroidWeb()
                             ? MediaQuery.of(context).size.width * 0.42
                             : MediaQuery.of(context).size.width * 0.25,
-                        height:  isAndroidWeb()
-                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.13,
-                        child: Obx( () =>
-                          Card(
-                            shadowColor:
-                                isHovered2.value ? AppConstant.primaryColor : null,
+                        height: isAndroidWeb()
+                            ? MediaQuery.of(context).size.height * 0.1
+                            : MediaQuery.of(context).size.height * 0.13,
+                        child: Obx(
+                          () => Card(
+                            shadowColor: isHovered2.value
+                                ? AppConstant.primaryColor
+                                : null,
                             elevation: 20,
                             color: AppConstant.cardColor2,
                             child: Row(
@@ -268,9 +283,18 @@ class _ProjectCardState extends State<ProjectCard> {
                                         0.075,
                                     height: MediaQuery.of(context).size.height *
                                         0.08,
-                                    child: Image.asset(
-                                      "assets/DownloadLogo.png",
-                                      fit: BoxFit.contain,
+                                    child: Icon(
+                                      Ionicons.download,
+                                      size: isAndroidWeb()
+                                            ? MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.06
+                                            : MediaQuery.of(context)
+                                                    .size
+                                                    .height *
+                                                0.08,
+                                      color: AppConstant.primaryColor,
                                     )),
                                 // 5.widthBox,
                                 Text(
@@ -304,7 +328,6 @@ class _ProjectCardState extends State<ProjectCard> {
       ),
     );
   }
-  
 }
 
 class VideoApp extends StatefulWidget {

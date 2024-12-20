@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
+import 'package:ionicons/ionicons.dart';
 import 'package:url_launcher/url_launcher.dart';
 
 import '../Fucntions/globalfunctions.dart';
@@ -39,65 +40,37 @@ class ContactMe extends StatelessWidget {
             ],
           ),
           SizedBox(height: MediaQuery.of(context).size.height * 0.09),
-          Wrap(  
+          Wrap(
             alignment: WrapAlignment.spaceEvenly,
             runAlignment: WrapAlignment.spaceEvenly,
-            
-            spacing: isAndroidWeb()? 40 : 150,
-            runSpacing: isAndroidWeb()? 40 : 150,
+            spacing: isAndroidWeb() ? 40 : 150,
+            runSpacing: isAndroidWeb() ? 40 : 150,
             children: [
               ContactBox(
                 url: 'https://www.linkedin.com/in/abdul-wahab-4659772ba',
                 isHovered: isHovered,
-                image: "assets/linkdenLogo.png",
+                image: Ionicons.logo_linkedin,
               ),
               ContactBox(
                 url: 'https://wa.me/03112709619',
                 isHovered: isHovered,
-                image: "assets/whatsappLogo.png",
+                image: Ionicons.logo_whatsapp,
               ),
               ContactBox(
                 url: 'tel:03112709619',
                 isHovered: isHovered,
-                image: "assets/phoneLogo.png",
+                image: Ionicons.phone_portrait,
               ),
               ContactBox(
                 url: 'mailto:abdulwahab31990@gmail.com',
                 isHovered: isHovered,
-                image: "assets/mailLogo.png",
+                image: Ionicons.mail,
               ),
               ContactBox(
                 url: 'https://github.com/victor99099',
                 isHovered: isHovered,
-                image: "assets/githubLogo.png",
+                image: Ionicons.logo_github,
               ),
-              // IconButton(
-              //   icon: Icon(Icons.email),
-              //   onPressed: () => _launchURL('mailto:abdulwahab31990@gmail.com'),
-              // ),
-              // IconButton(
-              //   icon: Icon(Icons.phone),
-              //   onPressed: () => _launchURL('tel:03112709619'),
-              // ),
-              // IconButton(
-              //   icon: Icon(Icons.safety_check),
-              //   onPressed: () => _launchURL('https://wa.me/03112709619'),
-              // ),
-              // IconButton(
-              //   icon: Icon(Icons.link),
-              //   onPressed: () => _launchURL(
-              //       'https://www.linkedin.com/in/abdul-wahab-4659772ba'),
-              // ),
-              // IconButton(
-              //   icon: Icon(Icons.facebook),
-              //   onPressed: () =>
-              //       _launchURL('https://www.facebook.com/your_profile'),
-              // ),
-              // IconButton(
-              //   icon: Icon(CupertinoIcons.scope),
-              //   onPressed: () =>
-              //       _launchURL('https://www.instagram.com/your_profile'),
-              // ),
             ],
           )
         ],
@@ -107,8 +80,12 @@ class ContactMe extends StatelessWidget {
 }
 
 class ContactBox extends StatelessWidget {
-  const ContactBox({super.key, required this.isHovered, required this.image, required this.url});
-  final String image;
+  const ContactBox(
+      {super.key,
+      required this.isHovered,
+      required this.image,
+      required this.url});
+  final IconData image;
   final String url;
   final RxBool isHovered;
   void _launchURL(String url) async {
@@ -139,12 +116,12 @@ class ContactBox extends StatelessWidget {
               elevation: 20,
               color: AppConstant.primaryColor,
               child: Padding(
-                padding: const EdgeInsets.all(8),
-                child: Image.asset(
-                  image,
-                  fit: BoxFit.cover,
-                ),
-              ),
+                  padding: const EdgeInsets.all(8),
+                  child: Icon(
+                    image,
+                    size: MediaQuery.of(context).size.height * 0.09,
+                    color: Colors.black,
+                  )),
             ),
           ),
         ));
