@@ -1,9 +1,10 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:portfolio/sections/projects.dart';
 import 'package:portfolio/sections/services.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:video_player/video_player.dart';
+
 
 
 
@@ -11,13 +12,17 @@ import 'sections/profile.dart';
 import 'sections/skills.dart';
 import 'utils/Theme.dart';
 
-void main() => runApp(MyPortfolio());
+void main() async {
+  // WidgetsFlutterBinding.ensureInitialized();
+  // await Firebase.initializeApp(); // Initialize Firebase
+  runApp(MyPortfolio());
+}
 
 class MyPortfolio extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      showSemanticsDebugger: false,
+      debugShowCheckedModeBanner: false,
       title: 'Portfolio',
       themeMode: ThemeMode.system,
       theme: MyTheme.lightTheme(context),
@@ -49,7 +54,7 @@ class PortfolioPage extends StatelessWidget {
             ProfileSection(
               onViewCV: () {
                 _launchURL(
-                    'https://drive.google.com/file/d/1rUIyLihhRoyziC6leYigKQ5TekhOS0aN/view?usp=sharing');
+                    'https://drive.google.com/file/d/1YluNfIM2W7KdOyosXrmlLO0Mzkcy_vHs/view?usp=sharing');
               },
             ),
             

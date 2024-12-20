@@ -58,8 +58,8 @@ class _ProjectsState extends State<Projects> {
           ProjectCard(
             title: 'Electronics Ecommerce',
             keyFeature:
-                "User convenice and usability was prioritized with one tap user sign-in and fast response times & a smooth interface supported by Firebase's real-time capabilities.",
-            videoUrl: 'assets/Ecommerceproject.mp4',
+                "User convenience and usability was prioritized with one tap user sign-in and fast response times & a smooth interface supported by Firebase's real-time capabilities.",
+            videoUrl: 'https://portfolio-e3fe4.web.app/assets/assets/Ecommerceproject2.mp4',
             githubUrl: 'https://github.com/victor99099/e_commerce',
             downloadUrl:
                 'https://drive.google.com/file/d/1qVtHuGTJNDdIjTYKy4b0rk39zKY_sWw6/view?usp=sharing',
@@ -73,7 +73,7 @@ class _ProjectsState extends State<Projects> {
             title: 'Weather',
             keyFeature:
                 "✔ Utilizes Singleton and Observer design patterns for efficient state management. \n✔ Ensures reusability, maintainability, and scalability with clean architecture. \n✔ Streamlined development and collaboration with Git for version control. \n✔ Performance Optimization using parallel fetching.",
-            videoUrl: 'assets/WeatherProjectVideo.mp4',
+            videoUrl: 'https://portfolio-e3fe4.web.app/assets/assets/WeatherProjectVideo2.mp4',
             githubUrl: 'https://github.com/victor99099/WeatherApp',
             downloadUrl:
                 'https://drive.google.com/file/d/1rUIyLihhRoyziC6leYigKQ5TekhOS0aN/view?usp=sharing',
@@ -145,7 +145,8 @@ class _ProjectCardState extends State<ProjectCard> {
               ),
               SizedBox(height: 10),
               Container(
-                height: MediaQuery.of(context).size.height * 0.9,
+                height: isAndroidWeb()
+                            ? MediaQuery.of(context).size.height * 0.7 : MediaQuery.of(context).size.height * 0.9,
                 width: MediaQuery.of(context).size.width * 0.9,
                 child: AspectRatio(
                   aspectRatio: 1, // Set aspect ratio to 1:1
@@ -193,9 +194,9 @@ class _ProjectCardState extends State<ProjectCard> {
                       child: Container(
                         width: isAndroidWeb()
                             ? MediaQuery.of(context).size.width * 0.42
-                            : MediaQuery.of(context).size.width * 0.3,
+                            : MediaQuery.of(context).size.width * 0.25,
                         height: isAndroidWeb()
-                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.15,
+                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.13,
                         child: Obx( () =>
                           Card(
                             shadowColor:
@@ -224,7 +225,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                     "View Code",
                                     style: TextStyle(
                                         color: Colors.white,
-                                        fontSize: isAndroidWeb() ? 10 : 20),
+                                        fontSize: isAndroidWeb() ? 10 : 16),
                                   ).pOnly(left: 5)
                                 ],
                               ),
@@ -243,9 +244,9 @@ class _ProjectCardState extends State<ProjectCard> {
                       child: Container(
                         width: isAndroidWeb()
                             ? MediaQuery.of(context).size.width * 0.42
-                            : MediaQuery.of(context).size.width * 0.3,
+                            : MediaQuery.of(context).size.width * 0.25,
                         height:  isAndroidWeb()
-                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.15,
+                            ? MediaQuery.of(context).size.height * 0.1 : MediaQuery.of(context).size.height * 0.13,
                         child: Obx( () =>
                           Card(
                             shadowColor:
@@ -272,7 +273,7 @@ class _ProjectCardState extends State<ProjectCard> {
                                   "Download APK",
                                   style: TextStyle(
                                       color: Colors.white,
-                                      fontSize: isAndroidWeb() ? 10 : 20),
+                                      fontSize: isAndroidWeb() ? 10 : 16),
                                 ).pOnly(left: 5)
                               ],
                             ),

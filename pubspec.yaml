@@ -7,6 +7,8 @@ environment:
   sdk: ^3.5.4
 
 dependencies:
+  firebase_core: ^3.8.1
+  firebase_storage: ^12.3.7
   flutter:
     sdk: flutter
   get: ^4.6.6
@@ -28,7 +30,10 @@ flutter:
   assets:
     - assets/Ecommerceproject.mp4
     - assets/WeatherProjectVideo.mp4
+    - assets/Ecommerceproject2.mp4
+    - assets/WeatherProjectVideo2.mp4
     - assets/background.jpg
+    - assets/profile.jpg
     - assets/background.png
     - assets/back1.png
     - assets/back2.png
